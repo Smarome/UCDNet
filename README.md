@@ -11,6 +11,7 @@ Torch 1.10.0
 ```shell script
 git clone https://github.com/Smarome/UCDNet.git
 cd UCDNet
+pip install mmcv==1.5.3 -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.10/index.html
 pip install -r requirements.txt
 pip install -v -e .
 cd nuscenes-devkit-1.1.3/setup
