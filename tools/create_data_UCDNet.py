@@ -34,36 +34,7 @@ map_name_from_general_to_detection = {
     'static_object.bicycle_rack': 'ignore',
 }
 
-# map_name_from_general_to_detection = {
-#     'human.pedestrian.adult': 'pedestrian',
-#     'human.pedestrian.child': 'pedestrian',
-#     'human.pedestrian.wheelchair': 'ignore',
-#     'human.pedestrian.stroller': 'ignore',
-#     'human.pedestrian.personal_mobility': 'ignore',
-#     'human.pedestrian.police_officer': 'pedestrian',
-#     'human.pedestrian.construction_worker': 'pedestrian',
-#     'animal': 'ignore',
-#     'vehicle.car': 'car',
-#     'vehicle.motorcycle': 'car',
-#     'vehicle.bicycle': 'car',
-#     'vehicle.bus.bendy': 'car',
-#     'vehicle.bus.rigid': 'car',
-#     'vehicle.truck': 'car',
-#     'vehicle.construction': 'construction_vehicle',
-#     'vehicle.emergency.ambulance': 'ignore',
-#     'vehicle.emergency.police': 'ignore',
-#     'vehicle.trailer': 'trailer',
-#     'movable_object.barrier': 'barrier',
-#     'movable_object.trafficcone': 'traffic_cone',
-#     'movable_object.pushable_pullable': 'ignore',
-#     'movable_object.debris': 'ignore',
-#     'static_object.bicycle_rack': 'ignore',
-# }
-# classes = [
-#     'car', 'truck', 'construction_vehicle', 'bus', 'trailer', 'barrier',
-#     'motorcycle', 'bicycle', 'pedestrian', 'traffic_cone'
-# ]
-classes = [   'car', 'truck', 'bus',  'pedestrian']  # %%%
+classes = [   'car', 'truck', 'bus',  'pedestrian']
 
 
 
@@ -77,8 +48,8 @@ def get_gt(info):
         Tensor: GT bboxes.
         Tensor: GT labels.
     """
-    ego2global_rotation = info['cams']['UAV_1']['ego2global_rotation']  # %%% 本来是CAM_FRONT
-    ego2global_translation = info['cams']['UAV_1'][  # %%%
+    ego2global_rotation = info['cams']['UAV_1']['ego2global_rotation']  
+    ego2global_translation = info['cams']['UAV_1'][  
         'ego2global_translation']
     trans = -np.array(ego2global_translation)
     rot = Quaternion(ego2global_rotation).inverse
@@ -88,7 +59,7 @@ def get_gt(info):
         # Use ego coordinate.
         # if (map_name_from_general_to_detection[ann_info['category_name']]
         #         not in classes
-        #         or ann_info['num_lidar_pts'] + ann_info['num_radar_pts'] <= 0):  #%%%不合适吧，这样就不生成anno了，可这样的话还能对齐吗？前面有true有false，但后面本应只有true的值
+        #         or ann_info['num_lidar_pts'] + ann_info['num_radar_pts'] <= 0):  
         if (map_name_from_general_to_detection[ann_info['category_name']] not in classes):
             continue
         box = Box(
@@ -129,12 +100,12 @@ def nuscenes_data_prep(root_path, info_prefix, version, max_sweeps=10):
 
 
 def add_ann_adj_info(extra_tag):
-    nuscenes_version = 'v1.23-trainval'  # %%%
-    dataroot = '/root/autodl-tmp/data/TEST23'  # %%%
+    nuscenes_version = 'v1.23-trainval'  
+    dataroot = 'data/AeroCollab3D'  
     nuscenes = NuScenes(nuscenes_version, dataroot)
     for set in ['train', 'val']:
         dataset = pickle.load(
-            open('/root/autodl-tmp/data/TEST23/%s_infos_%s.pkl' % (extra_tag, set), 'rb'))  # %%%
+            open('data/AeroCollab3D/%s_infos_%s.pkl' % (extra_tag, set), 'rb'))  
         for id in range(len(dataset['infos'])):
             if id % 10 == 0:
                 print('%d/%d' % (id, len(dataset['infos'])))
@@ -155,8 +126,8 @@ def add_ann_adj_info(extra_tag):
 
             scene = nuscenes.get('scene', sample['scene_token'])
             dataset['infos'][id]['occ_path'] = \
-                '/root/autodl-tmp/data/TEST23/gts/%s/%s'%(scene['name'], info['token'])  # %%%
-        with open('/root/autodl-tmp/data/TEST23/%s_infos_%s.pkl' % (extra_tag, set),  # %%%
+                'data/AeroCollab3D/gts/%s/%s'%(scene['name'], info['token'])  
+        with open('data/AeroCollab3D/%s_infos_%s.pkl' % (extra_tag, set),  
                   'wb') as fid:
             pickle.dump(dataset, fid)
 
@@ -164,9 +135,9 @@ def add_ann_adj_info(extra_tag):
 if __name__ == '__main__':
     dataset = 'nuscenes'
     version = 'v1.23'  # %%%
-    train_version = f'{version}-trainval'  # %%%
-    root_path = '/root/autodl-tmp/data/TEST23'  # %%%
-    extra_tag = 'bevdet_hop-nuscenes-test23'  # %%%
+    train_version = f'{version}-trainval'  
+    root_path = 'data/AeroCollab3D'  
+    extra_tag = 'bevdet_hop-nuscenes-AeroCollab3D'  
     nuscenes_data_prep(
         root_path=root_path,
         info_prefix=extra_tag,
