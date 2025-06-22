@@ -1,52 +1,5 @@
 # Copyright (c) Phigent Robotics. All rights reserved.
 
-# align_after_view_transfromation=True,
-# mAP: 0.3139
-# mATE: 0.6908
-# mASE: 0.2818
-# mAOE: 0.5492
-# mAVE: 0.3809
-# mAAE: 0.1963
-# NDS: 0.4470
-# Eval time: 139.7s
-#
-# Per-class results:
-# Object Class	AP	ATE	ASE	AOE	AVE	AAE
-# car	0.531	0.497	0.156	0.091	0.323	0.194
-# truck	0.248	0.708	0.208	0.142	0.320	0.201
-# bus	0.283	0.890	0.240	0.118	0.789	0.285
-# trailer	0.122	0.994	0.230	0.493	0.313	0.047
-# construction_vehicle	0.064	0.797	0.504	1.227	0.096	0.384
-# pedestrian	0.358	0.749	0.303	0.833	0.530	0.240
-# motorcycle	0.269	0.722	0.261	0.753	0.475	0.207
-# bicycle	0.228	0.619	0.288	1.172	0.201	0.013
-# traffic_cone	0.527	0.483	0.338	nan	nan	nan
-# barrier	0.508	0.450	0.290	0.113	nan	nan
-
-# align_after_view_transfromation=False,
-# mAP: 0.3157
-# mATE: 0.6907
-# mASE: 0.2814
-# mAOE: 0.5489
-# mAVE: 0.3780
-# mAAE: 0.1952
-# NDS: 0.4485
-# Eval time: 141.1s
-#
-# Per-class results:
-# Object Class	AP	ATE	ASE	AOE	AVE	AAE
-# car	0.532	0.496	0.156	0.091	0.320	0.194
-# truck	0.248	0.707	0.208	0.141	0.317	0.201
-# bus	0.282	0.888	0.240	0.116	0.787	0.286
-# trailer	0.123	0.992	0.230	0.508	0.309	0.048
-# construction_vehicle	0.066	0.808	0.502	1.218	0.094	0.385
-# pedestrian	0.361	0.748	0.303	0.831	0.526	0.237
-# motorcycle	0.274	0.726	0.261	0.750	0.472	0.199
-# bicycle	0.230	0.615	0.289	1.171	0.199	0.012
-# traffic_cone	0.528	0.480	0.338	nan	nan	nan
-# barrier	0.514	0.448	0.289	0.114	nan	nan
-
-
 _base_ = ['../_base_/datasets/nus-3d.py', '../_base_/default_runtime.py']
 # Global
 # If point cloud range is changed, the models should also change their point
@@ -114,7 +67,7 @@ model = dict(
         start_level=0,
         out_ids=[0]),
     img_view_transformer=dict(
-        type='LSSViewTransformer',  # %%%LSSViewTransformer
+        type='LSSViewTransformer',  
         grid_config=grid_config,
         input_size=data_config['input_size'],
         in_channels=256,
@@ -195,7 +148,7 @@ model = dict(
 
 # Data
 dataset_type = 'NuScenesDataset'
-data_root = '/workspace/data/TEST23/'  # %%%
+data_root = 'data/AeroCollab3D/'  
 file_client_args = dict(backend='disk')
 
 bda_aug_conf = dict(
@@ -206,12 +159,12 @@ bda_aug_conf = dict(
 
 train_pipeline = [
     dict(
-        type='PrepareImageInputs',  # 图片的加载
+        type='PrepareImageInputs',  
         is_train=True,
         data_config=data_config,
         sequential=True),
     dict(
-        type='LoadAnnotationsBEVDepth',  # annotation的加载
+        type='LoadAnnotationsBEVDepth',  
         bda_aug_conf=bda_aug_conf,
         classes=class_names),
     dict(type='ObjectRangeFilter', point_cloud_range=point_cloud_range),
@@ -265,11 +218,11 @@ share_data_config = dict(
 
 test_data_config = dict(
     pipeline=test_pipeline,
-    ann_file=data_root + 'bevdetv2-nuscenes-test23_infos_val.pkl')  # %%%
+    ann_file=data_root + 'bevdetv2-nuscenes-test23_infos_val.pkl')  
 
 # test_data_config = dict(
 #     pipeline=test_pipeline,
-#     ann_file=data_root + 'data_scene_3.pkl')  # %%%
+#     ann_file=data_root + 'data_scene_3.pkl')  
 
 data = dict(
     samples_per_gpu=12,
@@ -278,7 +231,7 @@ data = dict(
         type='CBGSDataset',
         dataset=dict(
         data_root=data_root,
-        ann_file=data_root + 'bevdetv2-nuscenes-test23_infos_train.pkl',  # %%%
+        ann_file=data_root + 'bevdetv2-nuscenes-test23_infos_train.pkl',  
         pipeline=train_pipeline,
         classes=class_names,
         test_mode=False,
@@ -302,7 +255,7 @@ lr_config = dict(
     warmup_iters=200,
     warmup_ratio=0.001,
     step=[20,])
-runner = dict(type='EpochBasedRunner', max_epochs=30)  #
+runner = dict(type='EpochBasedRunner', max_epochs=30)  
 
 custom_hooks = [
     dict(
