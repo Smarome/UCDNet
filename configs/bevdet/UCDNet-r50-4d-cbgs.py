@@ -1,52 +1,5 @@
 # Copyright (c) Phigent Robotics. All rights reserved.
 
-# align_after_view_transfromation=True,
-# mAP: 0.3139
-# mATE: 0.6908
-# mASE: 0.2818
-# mAOE: 0.5492
-# mAVE: 0.3809
-# mAAE: 0.1963
-# NDS: 0.4470
-# Eval time: 139.7s
-#
-# Per-class results:
-# Object Class	AP	ATE	ASE	AOE	AVE	AAE
-# car	0.531	0.497	0.156	0.091	0.323	0.194
-# truck	0.248	0.708	0.208	0.142	0.320	0.201
-# bus	0.283	0.890	0.240	0.118	0.789	0.285
-# trailer	0.122	0.994	0.230	0.493	0.313	0.047
-# construction_vehicle	0.064	0.797	0.504	1.227	0.096	0.384
-# pedestrian	0.358	0.749	0.303	0.833	0.530	0.240
-# motorcycle	0.269	0.722	0.261	0.753	0.475	0.207
-# bicycle	0.228	0.619	0.288	1.172	0.201	0.013
-# traffic_cone	0.527	0.483	0.338	nan	nan	nan
-# barrier	0.508	0.450	0.290	0.113	nan	nan
-
-# align_after_view_transfromation=False,
-# mAP: 0.3157
-# mATE: 0.6907
-# mASE: 0.2814
-# mAOE: 0.5489
-# mAVE: 0.3780
-# mAAE: 0.1952
-# NDS: 0.4485
-# Eval time: 141.1s
-#
-# Per-class results:
-# Object Class	AP	ATE	ASE	AOE	AVE	AAE
-# car	0.532	0.496	0.156	0.091	0.320	0.194
-# truck	0.248	0.707	0.208	0.141	0.317	0.201
-# bus	0.282	0.888	0.240	0.116	0.787	0.286
-# trailer	0.123	0.992	0.230	0.508	0.309	0.048
-# construction_vehicle	0.066	0.808	0.502	1.218	0.094	0.385
-# pedestrian	0.361	0.748	0.303	0.831	0.526	0.237
-# motorcycle	0.274	0.726	0.261	0.750	0.472	0.199
-# bicycle	0.230	0.615	0.289	1.171	0.199	0.012
-# traffic_cone	0.528	0.480	0.338	nan	nan	nan
-# barrier	0.514	0.448	0.289	0.114	nan	nan
-
-
 _base_ = ['../_base_/datasets/nus-3d.py', '../_base_/default_runtime.py']
 # Global
 # If point cloud range is changed, the models should also change their point
