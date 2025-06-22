@@ -19,9 +19,12 @@ pip install -v -e .
 ```
 
 ## Dataset
-### Step1: Download from https://pan.baidu.com/s/1I9tkdZM-6kMU0Hp3JNuCqg?pwd=p3tp
-### Step2: Create the pkl from AeroCollab3D dataset for UCDNet by running:
+### Step1: Download dataset.
+Download from https://pan.baidu.com/s/1I9tkdZM-6kMU0Hp3JNuCqg?pwd=p3tp
+### Step2: Process dataset.
+Create the pkl from AeroCollab3D dataset for UCDNet by running:
 ```shell script
 python tools/create_data_UCDNet.py
 ```
+Or download ready-made pkl from 
 
