@@ -26,13 +26,14 @@ Create the pkl from AeroCollab3D dataset for UCDNet by running:
 ```shell script
 python tools/create_data_UCDNet.py
 ```
-Or download ready-made pkl from 
+Or download ready-made pkl from https://pan.baidu.com/s/14o5OBOBbC1yhwfMQ1V5IPw?pwd=hjvw and put it into AeroCollab3D dataset folder.
 
 ## Model
 ### Train model.
 ```shell script
 python tools/train.py $config
 ```
+The config of UCDNet is located at "configs/bevdet/UCDNet-r50-cbgs.py".
 
 ### Test model.
 ```shell script
