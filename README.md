@@ -3,7 +3,7 @@ Welcome to the official PyTorch implementation of "UCDNet: Multi-UAV Collaborati
 
 
 ## Setup Instructions
-### Step1: Create Basic Environment.  
+### Step1: Create basic environment.  
 CUDA 11.3  
 Python 3.7.16  
 Torch 1.10.0   
@@ -19,4 +19,9 @@ pip install -v -e .
 ```
 
 ## Dataset
-Download from https://pan.baidu.com/s/1I9tkdZM-6kMU0Hp3JNuCqg?pwd=p3tp
+### Step1: Download from https://pan.baidu.com/s/1I9tkdZM-6kMU0Hp3JNuCqg?pwd=p3tp
+### Step2: Create the pkl from AeroCollab3D dataset for UCDNet by running:
+```shell script
+python tools/create_data_UCDNet.py
+```
+
