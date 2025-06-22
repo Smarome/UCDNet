@@ -28,3 +28,28 @@ python tools/create_data_UCDNet.py
 ```
 Or download ready-made pkl from 
 
+## Model
+### Train model.
+```shell script
+python tools/train.py $config
+```
+
+### Test model.
+```shell script
+python tools/test.py $config $checkpoint --eval mAP
+```
+
+## Bibtex
+
+If this work is helpful for your research, please consider citing the following BibTeX entries.
+
+```
+@article{tian2024ucdnet,
+  title={Ucdnet: Multi-uav collaborative 3d object detection network by reliable feature mapping},
+  author={Tian, Pengju and Wang, Zhirui and Cheng, Peirui and Wang, Yuchao and Wang, Zhechao and Zhao, Liangjin and Yan, Menglong and Yang, Xue and Sun, Xian},
+  journal={IEEE Transactions on Geoscience and Remote Sensing},
+  year={2024},
+  publisher={IEEE}
+}
+```
+
